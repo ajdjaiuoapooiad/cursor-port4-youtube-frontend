@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { MoreVertical } from 'lucide-react';
 
 interface Video {
   id: string;
@@ -22,14 +21,14 @@ interface VideoCardProps {
 
 export function VideoCard({ video }: VideoCardProps) {
   return (
-    <Link href={`/watch/${video.id}`} className="block">
+    <Link href={`/watch/${video.id}`} className="block group">
       <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
         <div className="relative aspect-video">
           <Image
             src={video.thumbnail}
             alt={video.title}
             fill
-            className="object-cover"
+            className="object-cover group-hover:scale-105 transition-transform duration-200"
           />
         </div>
         <div className="p-3">
@@ -44,9 +43,13 @@ export function VideoCard({ video }: VideoCardProps) {
               />
             </div>
             <div>
-              <h3 className="font-medium line-clamp-2">{video.title}</h3>
-              <p className="text-sm text-gray-600 mt-1">{video.channel.name}</p>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-medium text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                {video.title}
+              </h3>
+              <p className="text-sm text-gray-600 mt-1 hover:text-gray-900">
+                {video.channel.name}
+              </p>
+              <p className="text-sm text-gray-500">
                 {video.views} • {video.createdAt}
               </p>
             </div>
